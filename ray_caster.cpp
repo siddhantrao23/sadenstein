@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <cstdint>
 #include <cassert>
 #include <sstream>
@@ -43,16 +44,14 @@ void draw_sprite(Sprite &sprite, std::vector<float> &depth_buffer,
     while(sprite_dir - player.a >  M_PI) sprite_dir -= 2*M_PI;
     while(sprite_dir - player.a < -M_PI) sprite_dir += 2*M_PI;
 
-    float sprite_dist = std::sqrt(pow(player.x - sprite.x, 2) +
-            pow(player.y - sprite.y, 2));
-    size_t sprite_screen_size = std::min(1000, static_cast<int>(fb.h/sprite_dist));
+    size_t sprite_screen_size = std::min(1000, static_cast<int>(fb.h/sprite.player_dist));
     int h_offset = (sprite_dir - player.a)/player.fov*(fb.w/2) + (fb.w/2)/2
         - tex_sprites.size/2;
     int v_offset = fb.h/2 - sprite_screen_size/2;
 
     for(size_t i = 0; i<sprite_screen_size; ++i) {
         if(h_offset+int(i) < 0 || h_offset+i >= fb.w/2) continue;
-        if(depth_buffer[h_offset+i] < sprite_dist) continue;
+        if(depth_buffer[h_offset+i] < sprite.player_dist) continue;
         for(size_t j = 0; j<sprite_screen_size; ++j) {
             if(v_offset+int(j)<0 || v_offset+j>=fb.h) continue;
             uint32_t color = tex_sprites.get(i*tex_sprites.size/
@@ -116,6 +115,13 @@ void render(FrameBuffer &fb, Map &map, Player &player,
             break;
         }
     }
+
+    for(size_t i=0; i<sprites.size(); ++i) {
+        sprites[i].player_dist = std::sqrt(pow(player.x - sprites[i].x, 2) + 
+                pow(player.y - sprites[i].y, 2));
+    }
+    std::sort(sprites.begin(), sprites.end());
+
     for(size_t i = 0; i<sprites.size(); ++i) {
         map_show_sprites(sprites[i], fb, map);
         draw_sprite(sprites[i], depth_buffer, fb, player, tex_monst);
@@ -134,10 +140,12 @@ int main()
         std::cerr << "Error: Failed to load textures" << std::endl;
         return -1;
     }
-    std::vector<Sprite> sprites{{1.834, 8.765, 0},
-                                {3.323, 5.365, 2},
-                                {4.123, 10.265, 1}};
+    std::vector<Sprite> sprites{{3.523, 3.812,  2, 0},
+                                {1.834, 8.765,  0, 0},
+                                {5.323, 5.365,  1, 0},
+                                {4.123, 10.265, 1, 0}};
 
+#if 0
     for (size_t frame=0; frame<360; frame++) {
         std::stringstream ss;
         ss << std::setfill('0') << std::setw(5) << frame << ".ppm";
@@ -146,6 +154,11 @@ int main()
         render(fb, map, player, sprites, tex_walls, tex_monst);
         drop_ppm_image(ss.str(), fb.img, fb.w, fb.h);
     }
+#endif
+
+    render(fb, map, player, sprites, tex_walls, tex_monst);
+    drop_ppm_image("./out.ppm", fb.img, fb.w, fb.h);
 
     return 0;
 }
+

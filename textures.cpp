@@ -63,3 +63,4 @@ std::vector<uint32_t> Texture::get_scaled_column(const size_t texture_id,
     }
     return column;   
 }
+

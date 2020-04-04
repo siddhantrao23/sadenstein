@@ -34,3 +34,4 @@ bool Map::is_empty(const size_t i, const size_t j)
     assert(i<w && j<h && sizeof(map) == w*h+1);
     return map[i+j*w] == ' ';
 }
+
