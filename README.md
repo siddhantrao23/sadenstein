@@ -4,7 +4,7 @@ An old school FPS game in C++ inspired by `Wolfstein 3D`
   
 (Currently you can create a 3D render in a series of images based on your current location)  
   
-![sadenstein](out.ppm)
+![sadenstein](out.png)
   
   
 ## Compilation
