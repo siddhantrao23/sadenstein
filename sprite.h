@@ -11,3 +11,4 @@ struct Sprite {
 };
 
 #endif
+
