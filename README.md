@@ -9,8 +9,12 @@ An old school FPS game in C++ inspired by `Wolfstein 3D`
 ## Compilation
 ```sh
 git clone https://github.com/siddhantrao23/sadenstein.git
+sudo apt install -y libsdl2-dev git
 cd sadenstein
-g++ *.cpp     #I will have a makefile soon chill
-./a.out
+mkdir build
+cd build
+cmake ..
+make
+./ray_tracer
 ```
 The images will be stored in the output folder
