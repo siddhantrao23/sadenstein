@@ -8,8 +8,8 @@ An old school FPS game in C++ inspired by `Wolfstein 3D`
   
 ## Compilation
 ```sh
-git clone https://github.com/siddhantrao23/sadenstein.git
 sudo apt install -y libsdl2-dev git
+git clone https://github.com/siddhantrao23/sadenstein.git
 cd sadenstein
 mkdir build
 cd build
