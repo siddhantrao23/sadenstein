@@ -1,0 +1,3 @@
+/home/sid/proj/sadenstein/build/CMakeFiles/rebuild_cache.dir
+/home/sid/proj/sadenstein/build/CMakeFiles/ray_caster.dir
+/home/sid/proj/sadenstein/build/CMakeFiles/edit_cache.dir
