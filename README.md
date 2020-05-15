@@ -15,4 +15,3 @@ cmake ..
 make
 ./ray_tracer
 ```
-The images will be stored in the output folder
