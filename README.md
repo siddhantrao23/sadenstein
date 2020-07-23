@@ -6,12 +6,16 @@ An old school FPS game in C++ inspired by `Wolfstein 3D`
   
 ## Installation
 ```sh
-git clone https://github.com/siddhantrao23/sadenstein.git
-sudo apt install -y libsdl2-dev git
-cd sadenstein
-mkdir build
-cd build
-cmake ..
-make
-./ray_tracer
+$ git clone https://github.com/siddhantrao23/sadenstein.git
+$ sudo apt install -y libsdl2-dev git
+
+# build the files
+$ cd sadenstein
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+
+# run the executable
+$ ./ray_tracer
 ```
