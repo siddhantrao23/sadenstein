@@ -140,8 +140,8 @@ int main()
     FrameBuffer fb{1024, 512, std::vector<uint32_t>(1024 * 512, pack_color(255, 255, 255))};
     Player player{3.456, 2.345, 1.523, M_PI / 3.};
     Map map;
-    Texture tex_walls("textures/walltext.png");
-    Texture tex_monst("textures/monsters.png");
+    Texture tex_walls("../textures/walltext.png");
+    Texture tex_monst("../textures/monsters.png");
     if (!tex_walls.count || !tex_monst.count)
     {
         std::cerr << "Error: Failed to load textures" << std::endl;
