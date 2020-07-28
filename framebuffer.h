@@ -1,7 +1,6 @@
 #ifndef FRAMEBUFFER_H
 #define FRAMEBUFFER_H
 
-#include <cstdint>
 #include <cstdlib>
 #include <vector>
 
