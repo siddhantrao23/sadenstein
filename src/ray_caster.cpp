@@ -14,7 +14,7 @@ int wall_x_texcoord(const float hitx, const float hity, const Texture &tex_walls
     if(std::abs(y) > std::abs(x)) {
         tex = y * tex_walls.size;
     }
-    if(tex < 0)
+    if(tex < 0)     // negative x_textcoords
         tex += tex_walls.size;
     assert(tex >= 0 && tex < (int)tex_walls.size);
 
@@ -39,25 +39,48 @@ void draw_map(FrameBuffer &fb, const std::vector<Sprite> &sprites, const Texture
     }
 }
 
-void draw_sprite(FrameBuffer fb, const Sprite &sprite, const std::vector<float> &depth_buffer, const Player &player, const Texture &tex_sprites)
-{
+void draw_sprite(FrameBuffer &fb, const Sprite &sprite, const std::vector<float> &depth_buffer, const Player &player, const Texture &tex_sprites) {
     // absolute direction from the player to the sprite (in radians)
     float sprite_dir = atan2(sprite.y - player.y, sprite.x - player.x);
+    while (sprite_dir - player.a >  M_PI) sprite_dir -= 2*M_PI; // remove unncesessary periods from the relative direction
+    while (sprite_dir - player.a < -M_PI) sprite_dir += 2*M_PI;
+
+    size_t sprite_screen_size = std::min(2000, static_cast<int>(fb.h/sprite.player_dist)); // screen sprite size
+    int h_offset = (sprite_dir - player.a)*(fb.w/2)/(player.fov) + (fb.w/2)/2 - sprite_screen_size/2; // do not forget the 3D view takes only a half of the framebuffer, thus fb.w/2 for the screen width
+    int v_offset = fb.h/2 - sprite_screen_size/2;
+
+    for (size_t i=0; i<sprite_screen_size; i++) {
+        if (h_offset+int(i)<0 || h_offset+i>=fb.w/2) continue;
+        if (depth_buffer[h_offset+i]<sprite.player_dist) continue; // this sprite column is occluded
+        for (size_t j=0; j<sprite_screen_size; j++) {
+            if (v_offset+int(j)<0 || v_offset+j>=fb.h) continue;
+            uint32_t color = tex_sprites.get(i*tex_sprites.size/sprite_screen_size, j*tex_sprites.size/sprite_screen_size, sprite.tex_id);
+            uint8_t r,g,b,a;
+            unpack_color(color, r, g, b, a);
+            if (a>128)
+            fb.set_pixel(fb.w/2 + h_offset+i, v_offset+j, color);
+        }
+    }
+}
+#if 0
+void draw_sprite(FrameBuffer fb, const Sprite &sprite, const std::vector<float> &depth_buffer, const Player &player, const Texture &tex_sprites)
+{
+    float sprite_dir = atan2(sprite.y - player.y, sprite.x - player.x);
     while (sprite_dir - player.a > M_PI)
-        sprite_dir -= 2 * M_PI; // remove unncesessary periods from the relative direction
+        sprite_dir -= 2 * M_PI; 
     while (sprite_dir - player.a < -M_PI)
         sprite_dir += 2 * M_PI;
 
-    size_t sprite_screen_size = std::min(1000, static_cast<int>(fb.h / sprite.player_dist));                  // screen sprite size
-    int h_offset = (sprite_dir - player.a) / player.fov * (fb.w / 2) + (fb.w / 2) / 2 - tex_sprites.size / 2; // do not forget the 3D view takes only a half of the framebuffer
+    size_t sprite_screen_size = std::min(1000, static_cast<int>(fb.h / sprite.player_dist));                  
+    int h_offset = (sprite_dir - player.a) / player.fov * (fb.w / 2) + (fb.w / 2) / 2 - tex_sprites.size / 2;
     int v_offset = fb.h / 2 - sprite_screen_size / 2;
 
-    for (size_t i = 0; i < sprite_screen_size; i++) {
+    for (size_t i = 0; i < sprite_screen_size; ++i) {
         if (h_offset + int(i) < 0 || h_offset + i >= fb.w / 2)
             continue;
         if (depth_buffer[h_offset + i] < sprite.player_dist)
-            continue; // this sprite column is occluded
-        for (size_t j = 0; j < sprite_screen_size; j++) {
+            continue; 
+        for (size_t j = 0; j < sprite_screen_size; ++j) {
             if (v_offset + int(j) < 0 || v_offset + j >= fb.h)
                 continue;
             uint32_t color = tex_sprites.get(i * tex_sprites.size / sprite_screen_size, j * tex_sprites.size / sprite_screen_size, sprite.tex_id);
@@ -68,6 +91,7 @@ void draw_sprite(FrameBuffer fb, const Sprite &sprite, const std::vector<float> 
         }
     }
 }
+#endif
 
 void render(FrameBuffer &fb, const GameState &gs)
 {
@@ -84,26 +108,27 @@ void render(FrameBuffer &fb, const GameState &gs)
     std::vector<float> depth_buffer(fb.w / 2, 1e3);
 
     // for drawing visibility cone and 3d render
-    for (size_t i = 0; i < fb.w / 2; i++) {
+    for (size_t i = 0; i < fb.w / 2; ++i) {
         float angle = player.a - player.fov / 2 + player.fov * i / float(fb.w / 2);
         for (float t = 0; t < 20; t += .01) {
             float x = player.x + t*cos(angle);
             float y = player.y + t*sin(angle);
-            fb.set_pixel(x * cell_w, y * cell_h, pack_color(160, 160, 160));
+            fb.set_pixel(x*cell_w, y*cell_h, pack_color(160, 160, 160));
 
-            if (map.is_empty(x, y))
-                continue;
+            if (map.is_empty(x, y)) continue;
 
             size_t texid = map.get(x, y);
             assert(texid < tex_walls.count);
+
             float dist = t * cos(angle - player.a);
             depth_buffer[i] = dist;
-            size_t column_height = fb.h / dist;
+            size_t column_height = std::min(2000, int(fb.h/dist));
             int x_texcoord = wall_x_texcoord(x, y, tex_walls);
-            std::vector<uint32_t> column = tex_walls.get_scaled_column(texid,
-                                                                       x_texcoord, column_height);
+
+            std::vector<uint32_t> column = tex_walls.get_scaled_column(texid,   
+                    x_texcoord, column_height);
             int pix_x = i + fb.w / 2;
-            for (size_t j = 0; j < column_height; j++) {
+            for (size_t j = 0; j < column_height; ++j) {
                 int pix_y = j + fb.h / 2 - column_height / 2;
                 if (pix_y >= 0 && pix_y < (int)fb.h) {
                     fb.set_pixel(pix_x, pix_y, column[j]);
@@ -115,7 +140,7 @@ void render(FrameBuffer &fb, const GameState &gs)
 
     draw_map(fb, sprites, tex_walls, map, cell_w, cell_h);
 
-    for(size_t i = 0; i<sprites.size(); i++) {
+    for(size_t i = 0; i<sprites.size(); ++i) {
         draw_sprite(fb, sprites[i], depth_buffer, player, tex_monst);
     }
 }
