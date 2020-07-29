@@ -4,6 +4,10 @@
 
 An old school FPS game written in C++ inspired by `Wolfstein 3D` which implements ray tracing
 
+
+Current Implementation includes a ray tracing algorithm which generates a single rendered image.
+![sadenstein](https://user-images.githubusercontent.com/44816445/78461021-850b8580-76e3-11ea-9717-394c219b8fc9.png)
+
 ## Install
 
 ```sh
@@ -21,3 +25,4 @@ make
 ```sh
 ./sadenstein
 ```
+`out.ppm` will be stored in the build directory
