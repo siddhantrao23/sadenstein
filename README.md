@@ -5,9 +5,18 @@
 An old school FPS game written in C++ inspired by `Wolfstein 3D` which implements ray tracing
 
 
-Current Implementation includes a ray tracing algorithm which generates a single rendered image.  
+Current implementation allows walking through a world infested with monsters!  
 
 ![walkthrough](res/walkthrough.gif)
+
+Controls are pretty straightforward:
+
+Key | Action | 
+--- | --- 
+a | Turn CounterClockwise 
+d | Turn Clockwise
+w | Move Forward
+s | Move Backward
 
 ## Install
 
