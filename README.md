@@ -1,8 +1,8 @@
-<h1 align="center">Welcome to sadenstein 👋</h1>
+<h1 align="center">Sadenstein notso3D</h1>
 <p>
 </p>
 
-> An old school FPS game in C++ inspired by `Wolfstein 3D`
+> An old school FPS game written in C++ inspired by `Wolfstein 3D` which implements ray tracing
 
 ## Install
 
