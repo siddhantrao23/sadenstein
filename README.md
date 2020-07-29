@@ -21,17 +21,3 @@ make
 ```sh
 ./sadenstein
 ```
-
-## Author
-
-👤 **Siddhant Rao**
-
-* Website: siddhantrao23.github.io
-* Github: [@siddhantrao23](https://github.com/siddhantrao23)
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
