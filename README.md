@@ -36,4 +36,3 @@ make
 ```sh
 ./sadenstein
 ```
-`out.ppm` will be stored in the build directory
