@@ -2,7 +2,7 @@
 <p>
 </p>
 
-> An old school FPS game written in C++ inspired by `Wolfstein 3D` which implements ray tracing
+An old school FPS game written in C++ inspired by `Wolfstein 3D` which implements ray tracing
 
 ## Install
 
