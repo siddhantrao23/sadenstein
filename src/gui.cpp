@@ -46,7 +46,7 @@ int main() {
 
     auto t1 = std::chrono::high_resolution_clock::now();
     while (1) {
-        {}
+        {
             auto t2 = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double, std::milli> fp_ms = t2 - t1;
             if (fp_ms.count()<20) {
