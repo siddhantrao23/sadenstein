@@ -1,12 +1,11 @@
-# sadenstein  
-  
-An old school FPS game in C++ inspired by `Wolfstein 3D`
-  
-(Currently you can create a 3D render in a series of images based on your current location)  
-  
-![sadenstein](https://user-images.githubusercontent.com/44816445/78461021-850b8580-76e3-11ea-9717-394c219b8fc9.png)
-  
-## Compilation
+<h1 align="center">Welcome to sadenstein 👋</h1>
+<p>
+</p>
+
+> An old school FPS game in C++ inspired by `Wolfstein 3D`
+
+## Install
+
 ```sh
 git clone https://github.com/siddhantrao23/sadenstein.git
 sudo apt install -y libsdl2-dev git
@@ -15,6 +14,24 @@ mkdir build
 cd build
 cmake ..
 make
-./ray_tracer
 ```
-The images will be stored in the output folder
+
+## Usage
+
+```sh
+./sadenstein
+```
+
+## Author
+
+👤 **Siddhant Rao**
+
+* Website: siddhantrao23.github.io
+* Github: [@siddhantrao23](https://github.com/siddhantrao23)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
