@@ -19,11 +19,13 @@ d | Turn Clockwise
 w | Move Forward
 s | Move Backward
 
-## Install
+## Installation
 
 ```sh
 git clone https://github.com/siddhantrao23/sadenstein.git
 sudo apt install -y libsdl2-dev git
+
+# build the files
 cd sadenstein
 mkdir build
 cd build
