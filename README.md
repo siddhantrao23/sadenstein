@@ -4,11 +4,11 @@
 
 An old school FPS game written in C++ inspired by `Wolfstein 3D` which implements ray tracing
 
-> Current implementation allows walking through a world infested with monsters!  
-
 <p align="center">
-  <img src="https://github.com/siddhantrao23/sadenstein/blob/experiment/res/walkthrough.gif"/>
+  <img src="https://github.com/siddhantrao23/sadenstein/blob/master/res/walkthrough.gif"/>
 </p>
+
+> Current implementation allows walking through a world infested with monsters!  
 
 Controls are pretty straightforward:
 
