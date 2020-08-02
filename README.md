@@ -41,3 +41,8 @@ make
 ```sh
 ./sadenstein
 ```
+
+## TODO
+
+* [ ] Remove STB library dependancy
+* [ ] Add new sprites
