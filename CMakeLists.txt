@@ -1,8 +1,9 @@
 cmake_minimum_required (VERSION 2.8)
-project (ray_caster)
+project (sadenstine)
 
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 
+# check flags
 include(CheckCXXCompilerFlag)
 function(enable_cxx_compiler_flag_if_supported flag)
     string(FIND "${CMAKE_CXX_FLAGS}" "${flag}" flag_already_set)
@@ -21,17 +22,21 @@ enable_cxx_compiler_flag_if_supported("-pedantic")
 enable_cxx_compiler_flag_if_supported("-std=c++11")
 enable_cxx_compiler_flag_if_supported("-O3")
 
+
+# include SDL2
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}")
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
+#include source files
 file(GLOB SOURCES
-    "${SRC_DIR}/*.h"
-    "${SRC_DIR}/*.cpp"
+    "${SRC_DIR}/src/*.h"
+    "${SRC_DIR}/src/*.cpp"
 )
 
+# create executable
 add_executable(${PROJECT_NAME} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES}) 
 target_include_directories(${PROJECT_NAME} PRIVATE "${SRC_DIR}")
 
 
