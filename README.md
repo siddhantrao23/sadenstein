@@ -26,7 +26,7 @@ git clone https://github.com/siddhantrao23/sadenstein.git
 sudo apt install -y libsdl2-dev git
 ```
 
-# Building
+## Building
 
 ```sh
 cd sadenstein
