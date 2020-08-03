@@ -44,6 +44,6 @@ make
 
 ## TODO
 
-* [ ] Remove STB library dependancy
+* [x] Remove STB library dependancy
 * [ ] Add new sprites
 * [ ] Add GitPod instance
