@@ -18,13 +18,13 @@ int main() {
     FrameBuffer fb{1024, 512, std::vector<uint32_t>(1024*512, pack_color(255, 255, 255))};
     GameState gs{ Map(),                                // game map
         {3.456, 2.345, 1.523, M_PI/3., 0, 0}, // player
-        { {3.523, 3.812, 2, 0},               // monsters lists
-            {1.834, 8.765, 0, 0},
+        {   {3.523, 3.812, 2, 0},               // monsters lists
+            {1.834, 8.765, 4, 0},
             {5.323, 5.365, 1, 0},
             {14.32, 13.36, 3, 0},
-            {4.123, 10.76, 1, 0} },
+            {4.123, 10.76, 5, 0} },
         Texture("../textures/walltext.bmp", SDL_PIXELFORMAT_ABGR8888),  // textures for the walls
-        Texture("../textures/monsters.bmp", SDL_PIXELFORMAT_ABGR8888)}; // textures for the monsters
+        Texture("../textures/monsters2.bmp", SDL_PIXELFORMAT_ABGR8888)}; // textures for the monsters
     if (!gs.tex_walls.count || !gs.tex_monst.count) {
         std::cerr << "Error: Failed to load textures" << std::endl;
         return -1;
