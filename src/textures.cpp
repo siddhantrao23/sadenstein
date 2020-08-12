@@ -23,7 +23,6 @@ Texture::Texture(const std::string filename, const uint32_t format) :
 
     int w = surface->w;
     int h = surface->h;
-    printf("%d %d %d\n", w, h, surface->pitch);
 
     if (w * 4 != surface->pitch) {
         std::cerr << "Error: the texture must be a 32 bit image" << std::endl;
