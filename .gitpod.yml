@@ -1,2 +1,15 @@
+image:
+  file: Dockerfile
+ports:
+- port: 6080
+  onOpen: notify
+- port: 5900
+  onOpen: ignore
 tasks:
-  - init: cmake .
+- command: >
+    mkdir --parents build &&
+    cd build &&
+    cmake .. &&
+    make &&
+    ./sadenstein &&
+    cd ..
