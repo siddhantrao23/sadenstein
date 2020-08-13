@@ -24,7 +24,6 @@ enable_cxx_compiler_flag_if_supported("-O3")
 
 
 # include SDL2
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}")
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
@@ -36,7 +35,7 @@ file(GLOB SOURCES
 
 # create executable
 add_executable(${PROJECT_NAME} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES}) 
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
 target_include_directories(${PROJECT_NAME} PRIVATE "${SRC_DIR}")
 
 
