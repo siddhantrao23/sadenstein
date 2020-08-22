@@ -45,5 +45,7 @@ make
 ## TODO
 
 * [x] Remove STB library dependancy
+* [ ] Add menu for startup
+* [ ] Add user map drawing capabilities
 * [ ] Add new sprites
 * [ ] Add GitPod instance
