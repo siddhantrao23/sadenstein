@@ -51,3 +51,5 @@ Or just run the `build.sh` scirpt
 * [ ] Add network multiplayer capabilities
 * [ ] Add new sprites
 * [ ] Add GitPod instance
+
+Drop an issue if you want to work on any of these^
