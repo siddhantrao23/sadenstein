@@ -2,7 +2,7 @@
 <p>
 </p>
 
-_Sadenstein_ is a simple, old school 2.5D FPS game written in C++ inspired by `Wolfstein 3D` which implements ray casting.
+_Sadenstein_ is a simple, old school 2.5D FPS game written in C++ inspired by `Wolfenstein 3D` which implements ray casting.
 
 <p align="center">
   <img src="https://github.com/siddhantrao23/sadenstein/blob/master/res/walkthrough.gif"/>
