@@ -47,8 +47,9 @@ Or just run the `build.sh` scirpt
 
 * [x] Remove STB library dependancy
 * [ ] Add menu for startup
-* [ ] Add user map drawing feature
-* [ ] Add network multiplayer capabilities
+* [ ] Add user map drawing capability
+* [ ] Kill the monsters
+* [ ] Implement network multiplayer
 * [ ] Add new sprites
 * [ ] Add GitPod instance
 
