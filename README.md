@@ -2,7 +2,7 @@
 <p>
 </p>
 
-An old school FPS game written in C++ inspired by `Wolfstein 3D` which implements ray tracing
+An old school 2.5D FPS game written in C++ inspired by `Wolfstein 3D` which implements ray tracing
 
 <p align="center">
   <img src="https://github.com/siddhantrao23/sadenstein/blob/master/res/walkthrough.gif"/>
@@ -35,6 +35,7 @@ cd build
 cmake ..
 make
 ```
+Or just run the `build.sh` scirpt
 
 ## Usage
 
@@ -46,6 +47,7 @@ make
 
 * [x] Remove STB library dependancy
 * [ ] Add menu for startup
-* [ ] Add user map drawing capabilities
+* [ ] Add user map drawing feature
+* [ ] Add network multiplayer capabilities
 * [ ] Add new sprites
 * [ ] Add GitPod instance
