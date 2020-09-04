@@ -60,7 +60,7 @@ Texture::Texture(const std::string filename, const uint32_t format) :
 
 uint32_t Texture::get(const size_t i, const size_t j, const size_t idx) const
 {
-    assert(i < size && j < size && idx < count);
+    assert(i < size && j < size && idx <= count);
     return img[i + idx * size + j * img_w];
 }
 

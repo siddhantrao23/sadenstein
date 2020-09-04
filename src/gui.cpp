@@ -17,14 +17,20 @@ int main() {
 
     FrameBuffer fb{1024, 512, std::vector<uint32_t>(1024*512, pack_color(255, 255, 255))};
     GameState gs{ Map(),                                // game map
-        {3.456, 2.345, 1.523, M_PI/3., 0, 0}, // player
-        {   {3.523, 3.812, 2, 0},               // monsters lists
-            {1.834, 8.765, 4, 0},
-            {5.323, 5.365, 1, 0},
-            {14.32, 13.36, 3, 0},
-            {4.123, 10.76, 0, 0} },
-        Texture("../textures/walltext.bmp", SDL_PIXELFORMAT_ABGR8888),  // textures for the walls
-        Texture("../textures/titans.bmp", SDL_PIXELFORMAT_ABGR8888)}; // textures for the monsters
+                  {3.456, 2.345, 1.523, M_PI/3., 0, 0}, // player
+                  {   {1.834, 8.765, 4, 0},
+                      {1.980, 2.003, 3, 0},
+                      {3.523, 3.812, 2, 0},
+                      {4.123, 10.76, 0, 0},
+                      {5.323, 5.365, 1, 0},
+                      {5.682, 14.52, 4, 0},
+                      {6.552, 8.582, 1, 0},
+                      {13.82, 6.252, 4, 0},
+                      {12.32, 12.32, 4, 0},
+                      {14.22, 13.36, 2, 0},
+                      {14.32, 1.880, 3, 0}},
+                  Texture("../textures/wall_red.bmp", SDL_PIXELFORMAT_ABGR8888),  // textures for the walls
+                  Texture("../textures/char_blue.bmp", SDL_PIXELFORMAT_ABGR8888)}; // textures for the monsters
     if (!gs.tex_walls.count || !gs.tex_monst.count) {
         std::cerr << "Error: Failed to load textures" << std::endl;
         return -1;
