@@ -51,6 +51,5 @@ Or just run the `build.sh` scirpt
 * [ ] Kill the monsters
 * [ ] Implement network multiplayer
 * [ ] Add new sprites
-* [ ] Add GitPod instance
 
 Drop an issue if you want to work on any of these^
